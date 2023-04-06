@@ -1,0 +1,54 @@
+><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>HighCrypto</title>
+<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <h1 class="titulo">HighCrypto</h1>
+    <form id="saldo-ingresar">
+        <label for="saldo">Ingrese sus fondos:</label>
+        <input type="number" id="saldo" name="saldo">
+        <button type="submit" id="guardar">Guardar</button>
+    </form>
+
+<div id="menu">
+</div>
+
+<div class="container">
+<div class="card">
+    <h2>Bitcoin (BTC)</h2>
+    <p class="precio">Precio: 27500</p>
+    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Logo Bitcoin">
+    <label for="Cantidad-btc">Cantidad a comprar:</label>
+    <input type="number" id="Cantidad-comprar" name="Cantidad-comprar" min="1" value="1">
+<button class="comprar">Comprar</button>
+</div>
+<div class="card">
+<h2>Ethereum (ETH)</h2>
+<p class="precio">Precio: 1800</p>
+<img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Logo Ethereum">
+<label for="Cantidad-eth">Cantidad a comprar:</label>
+<input type="number" id="Cantidad-comprar" name="Cantidad-comprar" min="1" value="1">
+<button class="comprar">Comprar</button>
+</div>
+<div class="card">
+<h2>Litecoin (LTC)</h2>
+<p class="precio">Precio: 135</p>
+<img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Logo Litecoin">
+<label for="Cantidad-ltc">Cantidad a comprar:</label>
+<input type="number" id="Cantidad-comprar" name="Cantidad-comprar" min="1" value="1">
+<button class="comprar">Comprar</button>
+</div>
+</div>
+</div>
+
+<form id="boton-saldo">
+    <label for="saldo-disponible">Fondos disponibles:</label>
+    <input type="number" id="saldo-dispo" name="saldo-disponible">
+</form>
+
+<script src="./main.js"></script>
+</body>
+</html>
