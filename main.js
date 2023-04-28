@@ -1,4 +1,3 @@
-
 const monedasJSON = '{"monedas": [{"nombre": "Bitcoin", "abreviatura": "BTC", "precio": 27500}, {"nombre": "Ethereum", "abreviatura": "ETH", "precio": 1800}, {"nombre": "Litecoin", "abreviatura": "LTC", "precio": 135}]}';
 
 const monedas = JSON.parse(monedasJSON).monedas;
@@ -14,7 +13,7 @@ document.getElementById("saldo-ingresar").addEventListener("submit", (event) => 
 event.preventDefault();
 const saldo = Number(saldoIngresado.value);
 if (isNaN(saldo) || saldo <= 0) {
-alert("Ingrese un saldo válido");
+swal("Ingrese un saldo válido");
 return;
 }
 saldoDisponible = saldo;
@@ -31,19 +30,38 @@ const comprarBoton = comprarBotones[i];
 comprarBoton.addEventListener("click", () => {
 const cantidadComprar = Number(cantidadComprarElemento.value);
 if (isNaN(cantidadComprar) || cantidadComprar <= 0) {
-    alert("Ingrese una cantidad válida");
+    swal("Ingrese una cantidad valida");
     return;
 }
 const precioTotal = cantidadComprar * moneda.precio;
 if (precioTotal > saldoDisponible) {
-    alert("No tiene suficiente saldo para comprar esta cantidad");
+    swal("No tiene suficiente saldo para comprar esta cantidad");
     return;
 }
-saldoDisponible -= precioTotal;
-guardarSaldoEnLocalStorage(saldoDisponible);
-actualizarSaldoDisponible();
-cantidadComprarElemento.value = "1";
-alert(`Ha comprado ${cantidadComprar} ${moneda.abreviatura} por un total de ${precioTotal}`);
+
+const promesaCompra = new Promise((resolve, reject) => {
+    setTimeout(() => {
+    saldoDisponible -= precioTotal;
+    guardarSaldoEnLocalStorage(saldoDisponible);
+    actualizarSaldoDisponible();
+    cantidadComprarElemento.value = "1";
+    resolve(`Ha comprado ${cantidadComprar} ${moneda.abreviatura} por un total de ${precioTotal}`);
+    }, 2000);
+});
+
+promesaCompra.then((mensaje) => {
+    const toast = document.querySelector("#comprar");
+    Toastify({
+    text: mensaje,
+    duration: 3000,
+    newWindow: true,
+    close: true,
+    gravity: "top",
+    position: "right",
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+    stopOnFocus: true,
+    }).showToast();
+});
 });
 }
 
